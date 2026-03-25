@@ -7,7 +7,8 @@ import { GreetingCards } from '@/components/GreetingCards';
 import { SuggestionDiff } from '@/components/SuggestionDiff';
 
 export default function SharedPage() {
-  const { token } = useParams<{ token: string }>();
+  const params = useParams() as { token?: string | string[] };
+  const token = Array.isArray(params.token) ? params.token[0] : params.token;
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
